@@ -1,2 +1,4 @@
 openai
 numpy
+timescale-vector
+pandas
