@@ -12,27 +12,27 @@ vec = VectorStore(
 )
 client = OpenAI()
 
-def main():
-    prompt = "Wer ist Dirk?"
-    search_list = vec.search(prompt, top_k=1)
+def run_query(prompt: str, top_k: int = 1):
+    search_list = vec.search(prompt, top_k=top_k)
+    if not search_list:
+        return "Kein Treffer gefunden."
     top_match = search_list[0]
 
     response = client.responses.create(
         model="gpt-4.1-nano",
         input=[
-        {
-            "role": "developer",
-            "content": f"Context: {top_match.contents}"
-        },
-        {
-            "role": "user",
-            "content": prompt
-        }
+            {
+                "role": "developer",
+                "content": f"Context: {top_match.contents}"
+            },
+            {
+                "role": "user",
+                "content": prompt
+            }
         ]
     )
+    return response.output_text
 
-    print("Antwort von GPT-4.1-nano:")
-    print(response.output_text)
-
-if __name__ == "__main__":
-    main()
+# Beispiel für direkten Aufruf in Jupyter:
+# result = run_query("Wer ist Dirk?")
+# print(result)
