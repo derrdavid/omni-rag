@@ -3,6 +3,8 @@ import pandas as pd
 from openai import OpenAI
 from dotenv import load_dotenv
 from vector_store import VectorStore
+from timescale_vector.client import uuid_from_time
+import datetime
 
 client = OpenAI()
 vec = VectorStore(
@@ -22,20 +24,24 @@ def prepare_data(csv_path):
     df = pd.read_csv(csv_path, sep=';')
     prepared = []
     for idx, row in df.iterrows():
-        frage = row['frage']
-        antwort = row['antwort']
-        embedding = generate_embedding(frage)
-        metadata = {"quelle": "facts.csv"}
+        content = f"Question: {row['question']}\nAnswer: {row['answer']}"
+        embedding = generate_embedding(content)
+        metadata = {
+            "source": "facts.csv",
+            "created_at": datetime.datetime.now().isoformat()
+            }
         prepared.append({
-            "text": frage,
+            "id": uuid_from_time(datetime.datetime.now()),
+            "text": content,
             "embedding": embedding,
-            "metadata": metadata
+            "metadata": metadata,
         })
     return prepared
 
 def push_to_vector_db(prepared_data):
     for item in prepared_data:
         vec.upsert(
+            id=item["id"],
             text=item["text"],
             embedding=item["embedding"],
             metadata=item["metadata"]
