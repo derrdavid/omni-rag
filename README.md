@@ -6,14 +6,14 @@ This project implements the core ideas of [Omni-RAG (Dong et al. 2025)](https://
 
 ---
 
-## ✨ Key Features
+## Overview
 - **LLM-based Query Understanding:** Rewriting and decomposing user queries into sub-queries
 - **Intent-Aware Retrieval:** Vector search over external knowledge for each sub-query (e.g., FineWeb)
 - **Reranking & Generation:** `BAAI/bge-reranker-v2-m3` reranker and GPT-4.1-nano for final answer
 
 ---
 
-## 🚀 Installation
+## Installation
 ```bash
 # Clone repo and install dependencies
 pip install -r requirements.txt
