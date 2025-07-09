@@ -1,4 +1,3 @@
-import os
 import pandas as pd
 from vector_store import VectorStore
 from timescale_vector.client import uuid_from_time

@@ -2,3 +2,8 @@ openai
 numpy
 timescale-vector
 pandas
+dotenv
+sentence-transformers
+transformers
+pydantic
+datasets
