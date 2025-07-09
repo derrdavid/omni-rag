@@ -66,6 +66,7 @@ datasets
 
 ## 📖 Reference
 - Dong, G. et al. (2025): [Omni-RAG: Leveraging LLM-Assisted Query Understanding for Live Retrieval-Augmented Generation](https://arxiv.org/abs/2506.21384)
+- Dave Ebbelaar – [pgvectorscale‑rag‑solution](https://github.com/daveebbelaar/pgvectorscale-rag-solution)
 
 ---
 
