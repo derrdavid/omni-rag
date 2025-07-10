@@ -9,7 +9,7 @@ This project implements the core ideas of [Omni-RAG (Dong et al. 2025)](https://
 ## ✨ Key Features
 - **LLM-based Query Understanding:** Rewriting and decomposing user queries into sub-queries
 - **Intent-Aware Retrieval:** Vector search over external knowledge for each sub-query (e.g., FineWeb)
-- **Reranking & Generation:** `BAAI/bge-reranker-v2-m3` reranker and GPT-4.1-nano for final answer
+- **Reranking & Generation:** `BAAI/bge-base-en-v1.5` reranker and GPT-4.1-nano for final answer
 
 ---
 
@@ -47,7 +47,7 @@ docker compose up -d
 - **FineWeb Dataset**
 - **GPT-4.1-nano**
 - **text-embedding-3-small**
-- **BAAI/bge-reranker-v2-m3**
+- **BAAI/bge-base-en-v1.5**
 
 ### Python Packages
 ```

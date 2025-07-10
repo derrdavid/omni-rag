@@ -1,8 +1,8 @@
 from openai import OpenAI
 from dotenv import load_dotenv
 from vector_store import VectorStore
-from sentence_transformers import SentenceTransformer
 from pydantic import BaseModel
+from sentence_transformers import SentenceTransformer
 
 class DecomposedOutput(BaseModel):
     decomposed: list[str]
@@ -15,7 +15,7 @@ vec = VectorStore(
     distance_type="cosine"
 )
 client = OpenAI()
-reranker_model = SentenceTransformer("BAAI/bge-reranker-v2-m3")
+reranker_model = SentenceTransformer("BAAI/bge-base-en-v1.5")      
 
 def rewrite_query(query):
     prompt = "Rewrite the user query for retrieval."
@@ -49,7 +49,7 @@ def rerank(query, docs, top_n=3):
     d_emb = reranker_model.encode([d.contents for d in docs], convert_to_tensor=True)
     sims = reranker_model.similarity(q_emb, d_emb)
     idx = sims.argsort(descending=True)
-    return [docs[i] for i in idx[:top_n]]
+    return [docs[i] for i in idx[0][:top_n].tolist()]
 
 def generate(query, docs):
     context = "\n".join(d.contents for d in docs)
@@ -70,4 +70,5 @@ def omni_rag(query):
 
 if __name__ == "__main__":
     query = input("Query: ")
+    # query = "Was passierte in New Mexico, Albuquerue in einer Kirche?"
     print(omni_rag(query))
