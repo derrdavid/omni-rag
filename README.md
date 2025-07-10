@@ -6,14 +6,14 @@ This project implements the core ideas of [Omni-RAG (Dong et al. 2025)](https://
 
 ---
 
-## ✨ Key Features
+## Overview
 - **LLM-based Query Understanding:** Rewriting and decomposing user queries into sub-queries
 - **Intent-Aware Retrieval:** Vector search over external knowledge for each sub-query (e.g., FineWeb)
 - **Reranking & Generation:** `BAAI/bge-base-en-v1.5` reranker and GPT-4.1-nano for final answer
 
 ---
 
-## 🚀 Installation
+## Installation
 ```bash
 # Clone repo and install dependencies
 pip install -r requirements.txt
@@ -66,6 +66,7 @@ datasets
 
 ## 📖 Reference
 - Dong, G. et al. (2025): [Omni-RAG: Leveraging LLM-Assisted Query Understanding for Live Retrieval-Augmented Generation](https://arxiv.org/abs/2506.21384)
+- Dave Ebbelaar – [pgvectorscale‑rag‑solution](https://github.com/daveebbelaar/pgvectorscale-rag-solution)
 
 ---
 
