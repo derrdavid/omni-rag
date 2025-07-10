@@ -7,6 +7,11 @@ from sentence_transformers import SentenceTransformer
 class DecomposedOutput(BaseModel):
     decomposed: list[str]
 
+class GenerationOutput(BaseModel):
+    query: str
+    reranked_docs: list
+    generation_output: str
+
 # Set your OpenAI API key here or use an environment variable
 load_dotenv() 
 vec = VectorStore(
@@ -59,14 +64,16 @@ def generate(query, docs):
     )
     return result.output_text
 
-def omni_rag(query):
+def omni_rag(query) -> GenerationOutput:
     q_rewritten = rewrite_query(query)
     sub_queries = decompose_query(q_rewritten)
     docs = retrieve(sub_queries)
     if not docs:
         return "No relevant documents found."
-    top_docs = rerank(query, docs)
-    return generate(query, top_docs)
+    top_n_docs = rerank(query, docs)
+    generation_output = generate(query, top_n_docs)
+    
+    return GenerationOutput(query=query, reranked_docs=top_n_docs, generation_output=generation_output)
 
 if __name__ == "__main__":
     query = input("Query: ")
