@@ -67,6 +67,7 @@ datasets
 ## 📖 Reference
 - Dong, G. et al. (2025): [Omni-RAG: Leveraging LLM-Assisted Query Understanding for Live Retrieval-Augmented Generation](https://arxiv.org/abs/2506.21384)
 - Dave Ebbelaar – [pgvectorscale‑rag‑solution](https://github.com/daveebbelaar/pgvectorscale-rag-solution)
+- Ran, K. et al. (2025): [RMIT-ADM+S at the SIGIR 2025 LiveRAG Challenge](https://www.researchgate.net/publication/392766083_RMIT-ADMS_at_the_SIGIR_2025_LiveRAG_Challenge)
 
 ---
 
